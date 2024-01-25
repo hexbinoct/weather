@@ -93,28 +93,30 @@ def stats_yearmonth_avrg(year_month, data_location):
         humidity_sum += humidity
         count += 1
 
+    #results
     print(f"Highest Average : {round(highest_temp_sum/count,0)}C")
     print(f"Lowest Average : {round(lowest_temp_sum/count,0)}C")
     print(f"Humidity Average : {round(humidity_sum/count,0)}%")
 
-def getDayNum():
-    
+def getDayNum(date):
+    return date.split("-")[-1]
+
 def draw_graph(year_month, data_location, twolines):
     
     csvlines = read_csv(getFile(year_month, data_location))
-    count = 1
+    print(f"{months[int(year_month[5:])-1]} {year_month[:4]}")
     for line in csvlines[1:]:
         if len(line) != 23:
             continue
         high_temp = int(line[col_max_temp])
         low_temp = int(line[col_min_temp])
+        dayNum = getDayNum(line[0])
         if not twolines: # 1 line signs
-            print(f"{count} {termcolor.colored('+'*high_temp, 'red')}{termcolor.colored('+'*low_temp, 'blue')} {low_temp}C - {high_temp}C")
+            print(f"{dayNum} {termcolor.colored('+'*low_temp, 'blue')}{termcolor.colored('+'*high_temp, 'red')} {low_temp}C - {high_temp}C")
         else: #2 lines signs
-          print(f"{count} {termcolor.colored('+'*high_temp, 'red')} {high_temp}C")
-          print(f"{count} {termcolor.colored('+'*low_temp, 'blue')} {low_temp}C")
+          print(f"{dayNum} {termcolor.colored('+'*high_temp, 'red')} {high_temp}C")
+          print(f"{dayNum} {termcolor.colored('+'*low_temp, 'blue')} {low_temp}C")
 
-        count+=1
 
 
 def select_functionality():
@@ -145,8 +147,5 @@ def select_functionality():
 
 
 select_functionality() # call the function to select the functionality to use.
-
-def read_file():
-    print("not implemented buddy!!")
 
 
