@@ -97,6 +97,8 @@ def stats_yearmonth_avrg(year_month, data_location):
     print(f"Lowest Average : {round(lowest_temp_sum/count,0)}C")
     print(f"Humidity Average : {round(humidity_sum/count,0)}%")
 
+def getDayNum():
+    
 def draw_graph(year_month, data_location, twolines):
     
     csvlines = read_csv(getFile(year_month, data_location))
