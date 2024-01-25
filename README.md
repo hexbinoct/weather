@@ -1,3 +1,6 @@
+to install dependencies:
+pip install -r requirements.txt
+
 print max/min for a given year:
 python .\weatherman.py -e 2001 .\weatherdata\
 
